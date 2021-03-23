@@ -5,6 +5,8 @@
  */
 package entidade;
 
+import java.util.Objects;
+
 /**
  *
  * @author Dev Dreamm
@@ -20,6 +22,9 @@ public class Usuario {
         this.nome = nome;
         this.email = email;
         this.senha = senha;
+    }
+
+    public Usuario() {
     }
 
     public String getNome() {
@@ -53,6 +58,32 @@ public class Usuario {
     public void setPerfil(String perfil) {
         this.perfil = perfil;
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 83 * hash + Objects.hashCode(this.email);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Usuario other = (Usuario) obj;
+        if (!Objects.equals(this.email, other.email)) {
+            return false;
+        }
+        return true;
+    }
+    
     
     
 }

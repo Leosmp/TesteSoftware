@@ -3,28 +3,27 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package teste;
+package application;
 
-import negocio.UsuarioNegocio;
 import entidade.Usuario;
-import static org.junit.Assert.assertTrue;
-import org.junit.Test;
+import negocio.UsuarioNegocio;
 import repositorio.UsuarioRepositorio;
 
 /**
  *
- * @author Dev Dreamm
+ * @author Vinicius
  */
-public class CadastroUsuarioTeste {
+public class Program {
     
-    @Test
-    public static void cadastroUsuarioValidoTeste(){
+    public static void main(String[] args){
         Usuario user = new Usuario("Leonardo", "leo@gmail.com", "ifpe2021");
         user.setPerfil("moderador");
         UsuarioRepositorio userRepo = new UsuarioRepositorio();
         UsuarioNegocio un = new UsuarioNegocio(userRepo);
-        boolean ret = un.adicionarUsuario(user);
-	assertTrue(ret);
+        try { 
+            un.adicionarUsuario(user);
+        } catch (Exception ex) {
+            System.out.print(ex.getMessage());
+        }
     }
-    
 }

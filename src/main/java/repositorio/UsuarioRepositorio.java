@@ -8,6 +8,7 @@ package repositorio;
 import entidade.Usuario;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  *
@@ -29,6 +30,23 @@ public class UsuarioRepositorio {
         }
         return true;
     }
-    
-    
+
+    public Usuario buscarUsuario(String email) {
+        Usuario[] listUser = (Usuario[]) usuarios.stream().filter(user -> user.getEmail() == email).toArray();
+        Usuario user = listUser[0];
+        return user;
+    }
+
+    public boolean editarUsuario(Usuario u) {
+        try {
+            int index = usuarios.indexOf(u.getEmail());
+            if (index > -1) {
+                usuarios.add(index, u);
+            }
+        } catch (Exception ex) {
+            return false;
+        }
+        return true;
+    }
+
 }
